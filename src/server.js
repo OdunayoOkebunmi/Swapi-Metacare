@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import Debug from 'debug';
+import router from './routes';
 import connectToDB from './database/config';
 
 if (process.env.NODE_ENV !== 'production') dotenv.config();
@@ -11,11 +12,12 @@ if (process.env.NODE_ENV !== 'production') dotenv.config();
 const app = express();
 const debug = Debug(process.env.DEBUG);
 const isTest = process.env.NODE_ENV === 'test';
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(router);
 app.use(express.json());
 
 process.on('uncaughtException', (err) => {
