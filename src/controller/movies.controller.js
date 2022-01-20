@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { errorResponse, successResponse } from '../helper/responseHandler';
 import env from '../helper/config';
+import { sortDynamic } from '../helper/sort';
 
 export const getMoviesSorted = async (req, res, next) => {
   try {
@@ -17,9 +18,7 @@ export const getMoviesSorted = async (req, res, next) => {
         release_date: movie.release_date,
       }
     ));
-    data.sort(
-      (movieA, movieB) => (movieA.release_date > movieB.release_date ? 1 : -1),
-    );
+    data.sort(sortDynamic('release_date', 'asc'));
     return successResponse(res, 200, 'movies', data);
   } catch (error) {
     return next(error);
