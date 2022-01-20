@@ -2,6 +2,7 @@ import axios from 'axios';
 import Comment from '../database/models/Comment';
 import { errorResponse, successResponse } from '../helper/responseHandler';
 import env from '../helper/config';
+import { sortDynamic } from '../helper/utils';
 
 export const createComment = async (req, res, next) => {
   try {
@@ -28,6 +29,7 @@ export const createComment = async (req, res, next) => {
 export const getAllComments = async (req, res, next) => {
   try {
     const data = await Comment.find({});
+    data.sort(sortDynamic('comment', 'asc'));
     return successResponse(res, 200, 'comment', { message: 'Successfully retrieved all comments', data });
   } catch (error) {
     return next(error);
