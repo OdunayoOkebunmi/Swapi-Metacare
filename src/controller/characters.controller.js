@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { errorResponse, successResponse } from '../helper/responseHandler';
 import env from '../helper/config';
-import { sortedCharacters, filteredCharacters } from '../helper/sort';
+import { sortedCharacters, filteredCharacters } from '../helper/utils';
 
 export const getCharactersSorted = async (req, res, next) => {
   try {

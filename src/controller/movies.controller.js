@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { errorResponse, successResponse } from '../helper/responseHandler';
 import env from '../helper/config';
-import { sortDynamic } from '../helper/sort';
+import { sortDynamic } from '../helper/utils';
 
 export const getMoviesSorted = async (req, res, next) => {
   try {
